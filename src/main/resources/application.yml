@@ -1,0 +1,11 @@
+server:
+  port: 8080
+
+dubbo:
+  registry:
+    id: ${DUBBO_REGISTORY_ID}
+    address: ${DUBBO_REGISTORY_ADDRESS}
+    protocol: zookeeper
+  application:
+    id: travel_api_id1
+    name: travel_api_name1
