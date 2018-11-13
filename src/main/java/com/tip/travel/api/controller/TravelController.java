@@ -1,6 +1,8 @@
 package com.tip.travel.api.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.tip.travel.api.utils.JsonEntity;
+import com.tip.travel.api.utils.ResponseHelper;
 import com.tip.travel.common.domain.Travel;
 import com.tip.travel.common.service.TravelService;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,18 +18,18 @@ public class TravelController {
     private TravelService travelService;
 
     @GetMapping("/travel/{id}")
-    public Travel getTravelById(@PathVariable("id") Long id) {
-        return travelService.getTravelById(id);
+    public JsonEntity<Travel> getTravelById(@PathVariable("id") Long id) {
+        return ResponseHelper.createInstance(travelService.getTravelById(id));
     }
 
     @PostMapping("/travel")
-    public Integer createNewTravel(@RequestBody Travel travel) {
-        return travelService.saveTravel(travel);
+    public JsonEntity<Integer> createNewTravel(@RequestBody Travel travel) {
+        return ResponseHelper.createInstance(travelService.saveTravel(travel));
     }
 
     @DeleteMapping("/travel/{id}")
-    public Integer deleteTravel(@PathVariable("id") Long id) {
-        return travelService.deleteTravel(id);
+    public JsonEntity<Integer> deleteTravel(@PathVariable("id") Long id) {
+        return ResponseHelper.createInstance(travelService.deleteTravel(id));
     }
 
 }
