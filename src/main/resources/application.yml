@@ -4,7 +4,7 @@ server:
 dubbo:
   registry:
     id: ${DUBBO_REGISTORY_ID}
-    address: ${DUBBO_REGISTORY_ADDRESS}
+    address: www.modutxt.xin:2181
     protocol: zookeeper
   application:
     id: travel_api_id1
