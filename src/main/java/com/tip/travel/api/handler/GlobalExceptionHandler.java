@@ -24,10 +24,10 @@ public class GlobalExceptionHandler {
 
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     @ExceptionHandler(UnauthenticatedException.class)
-    public JsonEntity handleUnauthenticatedException() {
+    public JsonEntity handleUnauthenticatedException(UnauthenticatedException e) {
         JsonEntity jsonEntity = new JsonEntity();
         jsonEntity.setStatus(401);
-        jsonEntity.setMessage("未登陆");
+        jsonEntity.setMessage(e.getMessage());
         return jsonEntity;
     }
 
