@@ -9,3 +9,7 @@ dubbo:
   application:
     id: travel_api_id1
     name: travel_api_name1
+token:
+  secret: ${SECRET_TOKEN}
+  algorithm: HS256
+  expiresSecond: ${TOKEN_EXPIRES_SECOND}
