@@ -4,7 +4,6 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.tip.travel.api.utils.JsonEntity;
 import com.tip.travel.api.utils.JwtHelper;
 import com.tip.travel.api.utils.ResponseHelper;
-import com.tip.travel.common.annotation.CurrentUser;
 import com.tip.travel.common.annotation.LoginIgnore;
 import com.tip.travel.common.bo.LoginBo;
 import com.tip.travel.common.bo.UserBasicInfo;
@@ -36,9 +35,4 @@ public class UserController {
         return ResponseHelper.createInstance(jwtToken);
     }
 
-    @GetMapping("/me")
-    public JsonEntity<UserBasicInfo> getMe(@CurrentUser UserBasicInfo user) {
-        // String jwtToken = jwtHelper.createJwtToken(loginRes.getUserId());
-        return ResponseHelper.createInstance(user);
-    }
 }

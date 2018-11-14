@@ -52,17 +52,12 @@ public class JwtInterceptor implements HandlerInterceptor {
                 throw new UnauthenticatedException("未登录");
             }
             Claims claims = jwtHelper.parseJWT(accessToken);
-            Long userId = Long.parseLong(claims.getId());
-            List<UserBasicInfo> users = userService.checkLogin(userId);
-            UserBasicInfo me = null;
-            for (UserBasicInfo user : users) {
-                if (accessToken.equals(user.getToken())) {
-                    me = user;
-                    break;
-                }
+            Long userId = Long.valueOf(claims.getId());
+            Long userIdInRedis = userService.checkLogin(accessToken);
+            if ( userIdInRedis != null && userIdInRedis.equals(userId)) {
+                request.setAttribute(CommonConstants.REQUEST_ATTRIBUTE_CURRENT_USER, userId);
+                return true;
             }
-            request.setAttribute(CommonConstants.REQUEST_ATTRIBUTE_CURRENT_USER, me);
-            return true;
         }
         return true;
     }

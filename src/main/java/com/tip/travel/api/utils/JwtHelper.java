@@ -26,7 +26,7 @@ public class JwtHelper {
     /**
      * 生成token
      *
-     * @param id 一般传入userName
+     * @param id
      * @return
      */
     public String createJwtToken(Long id) {
